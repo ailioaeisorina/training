@@ -5,6 +5,7 @@ from snowflake.snowpark.context import get_active_session
 from snowflake.snowpark.functions import col, lit, call_function
 import io
 import uuid
+import requests
 
 st.set_page_config(page_title="Temperature & Humidity Trends", layout="wide")
 st.title("🌡️ Temperature & 💧 Humidity Trends")
