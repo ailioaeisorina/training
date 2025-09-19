@@ -114,6 +114,21 @@ st.subheader("Temperature Trend (by selected locations)")
 if not plot_df.empty:
     temp_wide = plot_df.pivot(index="TS_BUCKET", columns="location", values="AVG_TEMP_C").sort_index()
     st.line_chart(temp_wide)
+    
+# Convert temp_wide to Excel
+excel_bytes = io.BytesIO()
+with pd.ExcelWriter(excel_bytes, engine='xlsxwriter') as writer:
+    temp_wide.to_excel(writer, sheet_name="Temperature_Trend")
+    writer.save()
+excel_bytes.seek(0)
+
+# Add download button
+st.download_button(
+    label="📥 Download Temperature Chart (Excel)",
+    data=excel_bytes,
+    file_name="temperature_trend.xlsx",
+    mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+)
 
 st.subheader("Humidity Trend (by selected locations)")
 if not plot_df.empty:
