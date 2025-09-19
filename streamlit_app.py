@@ -9,7 +9,9 @@ import uuid
 st.set_page_config(page_title="Temperature & Humidity Trends", layout="wide")
 st.title("🌡️ Temperature & 💧 Humidity Trends")
 
-session = get_active_session()
+cnx = st.connection("snowflake")
+session = cnx.session()
+
 base_df = session.table("azure_view")
 
 # --- sidebar filters
