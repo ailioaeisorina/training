@@ -126,16 +126,16 @@ with st.expander("Show aggregated data table"):
 
 st.write(plot_df)
 
-# if not plot_df.empty:
-#     csv = plot_df.to_csv(index=False)  # Avoid including the index if unnecessary
-#     st.download_button(
-#         label="Download CSV",
-#         data=csv,
-#         file_name="plot_df.csv",
-#         mime="text/csv"  # Explicitly set the MIME type
-#     )
-# else:
-#     st.warning("The DataFrame is empty. No CSV to download.")
+if not plot_df.empty:
+    csv = plot_df.to_csv(index=False)  # Avoid including the index if unnecessary
+    st.download_button(
+        label="Download CSV",
+        data=csv,
+        file_name="plot_df.csv",
+        mime="text/csv"  # Explicitly set the MIME type
+    )
+else:
+    st.warning("The DataFrame is empty. No CSV to download.")
 
 # # 📄 Generează CSV din DataFrame-ul tău
 
@@ -178,16 +178,16 @@ st.write(plot_df)
 #         mime="text/csv"  # Explicitly set the MIME type
 # )
 
-# raw_data = base_df.toPandas()
-# st.write(raw_data)
+raw_data = base_df.toPandas()
+st.write(raw_data)
 
-# if not raw_data.empty:
-#     csv = raw_data.to_csv(index=False)  # Avoid including the index if unnecessary
-#     st.download_button(
-#         label="Download CSV",
-#         data=csv,
-#         file_name="raw_data.csv",
-#         mime="text/csv"  # Explicitly set the MIME type
-#     )
-# else:
-#     st.warning("The DataFrame is empty. No CSV to download.")
+if not raw_data.empty:
+    csv = raw_data.to_csv(index=False)  # Avoid including the index if unnecessary
+    st.download_button(
+        label="Download CSV",
+        data=csv,
+        file_name="raw_data.csv",
+        mime="text/csv"  # Explicitly set the MIME type
+    )
+else:
+    st.warning("The DataFrame is empty. No CSV to download.")
